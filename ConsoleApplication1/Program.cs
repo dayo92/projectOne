@@ -5,14 +5,9 @@ namespace ConsoleApplication1 // Note: actual namespace depends on the project n
 {
     internal class Program
     {
-        
-        
         public static void Main(string[] args)
         {
-            // First excerise 
-            string introductionText = "TileCost Calculator";
-            
-            Console.WriteLine(introductionText);
+            Console.WriteLine("TileCost Calculator"); 
             
             Console.WriteLine("Please enter width that is needed?");
             string requestedWidth = Console.ReadLine();
@@ -20,13 +15,8 @@ namespace ConsoleApplication1 // Note: actual namespace depends on the project n
             Console.WriteLine("Please enter length that is needed?");
             string requestedLength = Console.ReadLine();
             
-            
             Console.WriteLine("Please enter the cost per flooring that is needed?");
             string costPerUnit = Console.ReadLine();
-            
-            Console.WriteLine("I need " + requestedWidth + " in width.");
-            Console.WriteLine("I need " +  requestedLength + " in length.");
-            Console.WriteLine("And the cost per unit is £" + costPerUnit + ".");
             
             Int32.TryParse(requestedWidth, out int width);
             Int32.TryParse(requestedLength, out int length);
@@ -37,47 +27,38 @@ namespace ConsoleApplication1 // Note: actual namespace depends on the project n
             Console.WriteLine("Total cost is £" + total);
             
             // Additional difficulty
-            Console.Write("Please select what shape you would like to calculate Triangle or Cricle:");
-             string selectedShape = Console.ReadLine().ToLower();
-             double calculateShape;
-             const double hourRate = 86;
-             const double sqaureFeet = 20;
-             double jobCosts;
+            const double HOUR_RATE = 86;
+            const double SQAURE_FEET = 20;
+            const string TRIANGLE = "Triangle";
+            const string CIRCLE = "Circle";
+            
+            double calculateShape = 0;
+            
+            
+            Console.WriteLine("Please select what shape you would like to calculate: (T) for Triangle or (C) for Circle: ");
+            string selectedShape = Console.ReadLine().ToLower();
+            
+            string shape = selectedShape == "c" ? CIRCLE : TRIANGLE;
+             
+            Console.Write("Please enter " + shape +" width: ");
+            double shapeWidth = Convert.ToDouble(Console.ReadLine());
+            
+            Console.Write("Please enter " + shape + " length: ");
+            double shapeLength = Convert.ToDouble(Console.ReadLine());
 
-            if (selectedShape == "cricle")
+            if (shape == CIRCLE)
             {
-                // shape 1
-                Console.Write("Please enter the crilcle width: ");
-                double circleWidth = Convert.ToDouble(Console.ReadLine());
-            
-                Console.Write("Enter the cricle length: ");
-                double circleLength = Convert.ToDouble(Console.ReadLine());
-            
-                calculateShape = circleWidth * circleLength;
-                Console.WriteLine("The cricle size is " + calculateShape);
-                
-                jobCosts = calculateShape / sqaureFeet * hourRate;
-                Console.WriteLine("Total cost of labor for installing " + selectedShape +" is £" + jobCosts + ".");
-
+                calculateShape = shapeWidth * shapeLength;
             }
-            if (selectedShape == "triangle")
+            if(shape == TRIANGLE)
             {
-                // Shape 2
-                Console.Write("Please enter triangle width: ");
-                double circleWidth = Convert.ToDouble(Console.ReadLine());
-            
-                Console.Write("Please enter triangle length:");
-                double circleLength = Convert.ToDouble(Console.ReadLine());
-            
-                calculateShape = 0.5 * circleWidth * circleLength;
-                Console.WriteLine("The triangle size is " + calculateShape + ".");
-
-               jobCosts = calculateShape / sqaureFeet * hourRate;
-               
-               
-               Console.WriteLine("Total cost of labor for installing " + selectedShape +" is £" + jobCosts + ".");
-
+                calculateShape = 0.5 * shapeWidth * shapeLength;
             }
+            
+            Console.WriteLine("The " + shape +" size is " + calculateShape);
+
+            double jobCosts = calculateShape / SQAURE_FEET * HOUR_RATE;
+            Console.WriteLine("Total cost of labor for installing " + shape +" is £" + jobCosts + ".");
         }
     }
 }

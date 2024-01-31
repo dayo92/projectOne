@@ -56,6 +56,11 @@ namespace ConsoleApplication1 // Note: actual namespace depends on the project n
                 
                 calculateShape = width * length;
             }
+            if(SHAPE_RECTANGLE != shapeCharacter && SHAPE_CIRCLE != shapeCharacter && SHAPE_TRIANGLE != shapeCharacter)
+            {
+                Console.WriteLine("Invalid shape selected.");
+                return;
+            }
             
             Console.WriteLine("The selected shape size is " + Math.Round(calculateShape,2) + ".");
 

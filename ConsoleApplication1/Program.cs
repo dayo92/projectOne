@@ -22,6 +22,11 @@ namespace ConsoleApplication1 // Note: actual namespace depends on the project n
             char shapeCharacter = selectedShape.ToCharArray()[0];
             double calculateShape = 0;
 
+            if(SHAPE_RECTANGLE != shapeCharacter && SHAPE_CIRCLE != shapeCharacter && SHAPE_TRIANGLE != shapeCharacter)
+            {
+                Console.WriteLine("Invalid shape selected.");
+                return;
+            }
             
             if (SHAPE_CIRCLE == shapeCharacter)
             {
@@ -55,11 +60,6 @@ namespace ConsoleApplication1 // Note: actual namespace depends on the project n
                 Int32.TryParse(requestedLength, out int length);
                 
                 calculateShape = width * length;
-            }
-            if(SHAPE_RECTANGLE != shapeCharacter && SHAPE_CIRCLE != shapeCharacter && SHAPE_TRIANGLE != shapeCharacter)
-            {
-                Console.WriteLine("Invalid shape selected.");
-                return;
             }
             
             Console.WriteLine("The selected shape size is " + Math.Round(calculateShape,2) + ".");

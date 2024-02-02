@@ -68,11 +68,13 @@ namespace ConsoleApplication1 // Note: actual namespace depends on the project n
             string costPerUnit = Console.ReadLine();
             Int32.TryParse(costPerUnit, out int cost);
 
-            double totalCost = calculateShape / SQUARE_FEET * cost;
+            double totalCost = SQUARE_FEET * cost;
             Console.WriteLine("Total cost for the flooring is £" + Math.Round(totalCost,2));
 
             double jobCosts = calculateShape / SQUARE_FEET * HOUR_RATE;
             Console.WriteLine("Total cost of labor for installing the flooring is £" + Math.Round(jobCosts,2));
+            
+            Console.WriteLine("The combined total cost will be £" + Math.Round(jobCosts + totalCost,2));
 
         }
     }
